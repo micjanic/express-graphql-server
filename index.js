@@ -6,10 +6,22 @@ const { graphql, buildSchema } = require('graphql');
 const schema = buildSchema(`
   type Query {
     hello: String
+    getPost: Post
+  }
+
+  type Post {
+    id: Int
+    title: String
   }
 `);
  
-const root = { hello: () => 'Hello world!' };
+const root = { 
+  hello: () => 'Hello world!',
+  getPost: () => ({
+    id:1,
+    title: 'hello world'
+  })
+};
 
 const app = express();
 
